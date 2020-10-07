@@ -1,3 +1,4 @@
+<p>OCTUBRE</p>
 <table>
 <tr>
 <td>lu</td>
@@ -14,8 +15,9 @@
 <?php
 echo "<tr>";
 
-$cuandoempieza=3;
-
+/*$cuandoempieza=3;
+/*strtotime
+date N,*/
 
 for ($n=1;$n!=31; $n++){
     echo "<td>$n</td>";
