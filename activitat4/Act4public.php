@@ -2,9 +2,9 @@
 <?php
 session_start();
 include "Act4llibreria.php";
-/*if (isset($_REQUEST["aceptar"])){
+/*if (isset($_POST["aceptar"])){
     setcookie('cookie',7, time() + 365 * 24 * 60 * 60); 
-} else (isset($_REQUEST["rechazar"])){
+} else if (isset($_POST["rechazar"])){
     header("Location: http://www.google.com"); 
 }*/
 
@@ -35,13 +35,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
         }
     ?>
-    <from method="post">
+    <form method="post">
         <p>cookies</p>
         <input type="submit" name="aceptar" value="aceptar">
         <input type="submit" naem="rechazar" value="rechazar">
         <br>
         <br>
-    </from> 
+    </form> 
     <?php
 
     ?>
