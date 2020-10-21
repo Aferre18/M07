@@ -26,5 +26,4 @@ function mirar_contra ($contra){
     }
     return $contraErr;
 }
-
 ?>
