@@ -1,26 +1,6 @@
-
 <?php
 session_start();
-include "Act4llibreria.php";
-/*if (isset($_POST["aceptar"])){
-    setcookie('cookie',7, time() + 365 * 24 * 60 * 60); 
-} else if (isset($_POST["rechazar"])){
-    header("Location: http://www.google.com"); 
-}*/
-
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    if(($_REQUEST["usuario"]) == "aferrec@fp.insjoaquimmir.cat" && ($_REQUEST["contrasenya"]) == "albert1234"){
-        $_SESSION['usuario'] = ($_REQUEST['usuario']);
-        $_SESSION['contrasenya'] = ($_REQUEST['contrasenya']);
-        header("Location: http://dawjavi.insjoaquimmir.cat/aferre/M07/activitat4/Act4privat.php");
-    } else {
-        
-        echo "Tus datos son incorrectos";
-    }
-    
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,27 +9,53 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <title>Document</title>
 </head>
 <body>
+<?php
+    include "Act4llibreria.php";
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        if(isset($_REQUEST["aceptar"])){
+            if($_REQUEST["aceptar"] == "aceptar") { 
+                setcookie("aceptado", 1, time() + 365 * 24 * 60 * 60);
+                header("Location: http://dawjavi.insjoaquimmir.cat/aferre/M07/activitat4/Act4public.php");
+            } else{
+                header("Location: http://wwww.google.es");
+            }
+           
+        
+    } else {     
+            if(($_REQUEST["usuario"]) == "aferrec@fp.insjoaquimmir.cat" && ($_REQUEST["contrasenya"]) == "albert1234"){
+            $_SESSION['usuario'] = ($_REQUEST['usuario']);
+            $_SESSION['contrasenya'] = ($_REQUEST['contrasenya']);
+            header("Location: http://dawjavi.insjoaquimmir.cat/aferre/M07/activitat4/Act4privat.php");
+    } else {
+        
+        echo "Tus datos son incorrectos";
+    }
+}
+}
+?>
     <?php
-        if (isset($_COOKIE["cookie"])){
-            setcookie ('contador', 6, time() + 365 * 24 * 60 * 60);
-
-        }
+        if (isset($_COOKIE["aceptado"])){    
     ?>
+ <form method="post">
+        <label> Email: </label><input type="text" name="usuario"><br>
+        <label> contrasenya: </label><input type="password" name="contrasenya"><br>
+        <input type="submit" value="Go"><br>
+    </form>
+<?php
+}else{
+?>
     <form method="post">
-        <p>cookies</p>
-        <input type="submit" name="aceptar" value="aceptar">
-        <input type="submit" naem="rechazar" value="rechazar">
+        <label>La pagina usa cookies</label>
+        <button type="submit" name="aceptar" value="aceptar">Si.</button>
+        <button type="submit" naem="aceptar" value="rechazar">No.</button>
         <br>
         <br>
     </form> 
     <?php
 
-    ?>
-    <form method="post">
-        <label> Email: </label><input type="text" name="usuario"><br>
-        <label> contrasenya: </label><input type="password" name="contrasenya"><br>
-        <input type="submit" value="Go"><br>
-    </form>
-
+    ?>  
+<?php
+}
+?>
 </body>
 </html>
