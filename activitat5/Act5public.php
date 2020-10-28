@@ -1,20 +1,16 @@
 <?php
 session_start();
-$ip = 'localhost';
-$usuari = 'albert';
-$password = 'albert1234';
-$db_name = 'aferre_Activitat5';
 
-// connectem amb la db
-$con = mysqli_connect($ip,$usuari,$password,$db_name);
-if (!$con)  {
-   echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+$conn = new mysqli('localhost', 'albert', 'albert1234', 'aferre_Activitat5');
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-
-
-$sql = "SELECT * FROM 'Usuarios'";
-$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-echo "<p>.$resultat['user'].</p>";
+$sql = "SELECT * FROM Usuarios";
+$result = $conn->prepare($sql);
+if(!$result = $mysql->query($sql)){
+    die("Error ")
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +26,7 @@ echo "<p>.$resultat['user'].</p>";
         if(isset($_REQUEST["aceptar"])){
             if($_REQUEST["aceptar"] == "aceptar") { 
                 setcookie("aceptado", 1, time() + 365 * 24 * 60 * 60);
-                header("Location: http://dawjavi.insjoaquimmir.cat/aferre/M07/activitat4/Act4public.php");
+                header("Location: http://dawjavi.insjoaquimmir.cat/aferre/M07/activitat5/Act5public.php");
             } else{
                 header("Location: http://wwww.google.es");
             }
@@ -40,7 +36,7 @@ echo "<p>.$resultat['user'].</p>";
             if(($_REQUEST["usuario"]) == "albert" && ($_REQUEST["contrasenya"]) == "albert1234"){
             $_SESSION['usuario'] = ($_REQUEST['usuario']);
             $_SESSION['contrasenya'] = ($_REQUEST['contrasenya']);
-            header("Location: http://dawjavi.insjoaquimmir.cat/aferre/M07/activitat4/Act4privat.php");
+            header("Location: http://dawjavi.insjoaquimmir.cat/aferre/M07/activitat5/Act5privat.php");
     } else {
         
         echo "Tus datos son incorrectos";
